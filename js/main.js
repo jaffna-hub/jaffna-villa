@@ -5,8 +5,13 @@ const villas = [
         title: 'Villa 01 - The Grand Tropical',
         capacity: '50-60',
         type: 'Modern Estate',
-        image: 'images/villa_01_exterior_1772800502157.png',
-        images: ['images/media__1772800243898.jpg', 'images/media__1772800243954.jpg'],
+        image: 'images/media__1772805327337.jpg',
+        images: ['images/media__1772805328719.jpg', 'images/media__1772805329959.jpg'],
+        videos: [
+            { title: 'Villa 01 බලන්න 01', url: 'https://youtu.be/8cRL1EuYdyk?si=akZo6XXErxcaHJx0' },
+            { title: 'Villa 01 බලන්න 02', url: 'https://youtu.be/sceLP9eTaJ4?si=alHzFunayy9sN2RB' },
+            { title: 'Villa 01 බලන්න 03', url: 'https://youtu.be/wSIn9mKmWx0?si=lrd3vbYw59nl-5ak' }
+        ],
         desc: 'මෙම නවාතැන අතිවිශාල පිරිසකට පහසුකම් සැලසීමට සමත්ය. විශාල බස් රථ 3ක් දක්වා ගාල් කිරීමේ පහසුකම් ඇත. නවීන අංගෝපාංග වලින් සමන්විත වන අතර, පිරිසිදු බව සහ ආරක්ෂාව ඉහළින්ම තහවුරු කර ඇත. විවේක ගැනීමට විශාල සාලයක් සහ එළිමහන් ප්‍රදේශයක් ඇත.',
         features: ['Bus Parking Available', 'Large Group Capacity', 'Modern Bathrooms', 'Safe & Secure', 'Open Garden', 'Driver Quarters']
     },
@@ -128,6 +133,34 @@ const HomeTemplate = () => `
             </div>
         </div>
     </section>
+
+    <section class="gallery-tours" style="padding: 5rem 0; background: var(--white);">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">අප සමඟ සංචාරය කළ පිරිස</h2>
+                <p class="section-subtitle">අප හා එක්වූ ආදරණීය සංචාරකයින්ගේ මතක සටහන් කිහිපයක්.</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+                <img src="images/media__1772805904639.jpg" alt="Tour Group" style="width: 100%; height: 250px; object-fit: cover; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+                <img src="images/media__1772805904944.jpg" alt="Tour Group" style="width: 100%; height: 250px; object-fit: cover; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+                <img src="images/media__1772805905216.jpg" alt="Tour Group" style="width: 100%; height: 250px; object-fit: cover; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+                <img src="images/media__1772805906232.jpg" alt="Tour Group" style="width: 100%; height: 250px; object-fit: cover; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+                <img src="images/media__1772805907471.jpg" alt="Tour Group" style="width: 100%; height: 250px; object-fit: cover; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+            </div>
+
+            <div class="playlist-card" style="background: var(--bg-color); padding: 2.5rem; border-radius: var(--radius-md); text-align: center; border: 1px solid rgba(0,0,0,0.05); box-shadow: var(--shadow-sm);">
+                <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">
+                    <i class="fa-brands fa-youtube" style="color: #ff0000; font-size: 2rem; vertical-align: middle; margin-right: 10px;"></i>
+                    යාපනයේ සංචාරයන් නැරඹීමට
+                </h3>
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">අපගේ YouTube නාලිකාව හරහා යාපනයේ සුන්දරත්වය නරඹන්න.</p>
+                <a href="https://youtube.com/playlist?list=PLrM4xJNrEz28X3IGn0VTnMVseywO9QLZg&si=ZSdFZTnjbpSdIbt2" target="_blank" class="btn btn-primary" style="padding: 12px 30px; font-size: 1.1rem;">
+                    පෙළගැස්ම (Playlist) බලන්න <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
 `;
 
 const VillaTemplate = (villa) => `
@@ -166,6 +199,22 @@ const VillaTemplate = (villa) => `
                             ${villa.features.map(f => `<li><i class="fa-solid fa-check-circle"></i> ${f}</li>`).join('')}
                         </ul>
                     </div>
+
+                    ${villa.videos ? `
+                    <div style="margin-top: 3rem; background: var(--bg-color); padding: 2rem; border-radius: var(--radius-md);">
+                        <h2 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px;">
+                            <i class="fa-brands fa-youtube" style="color: #ff0000;"></i> වීඩියෝ නැරඹීමට පහත ලින්ක් මත ක්ලික් කරන්න
+                        </h2>
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            ${villa.videos.map(v => `
+                                <a href="${v.url}" target="_blank" style="padding: 15px 20px; background: white; border-radius: var(--radius-sm); border-left: 4px solid #ff0000; box-shadow: var(--shadow-sm); font-weight: 600; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s;">
+                                    <span>${v.title}</span>
+                                    <i class="fa-solid fa-external-link-alt" style="color: var(--text-muted);"></i>
+                                </a>
+                            `).join('')}
+                        </div>
+                    </div>
+                    ` : ''}
                 </div>
 
                 <div>
